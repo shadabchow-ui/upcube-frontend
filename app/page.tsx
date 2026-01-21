@@ -59,11 +59,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Bottom gradient bar */}
-      <div className="h-3 w-full bg-gradient-to-r from-pink-400/20 via-orange-300/15 to-blue-400/20" />
     </main>
   )
 }
-
-
