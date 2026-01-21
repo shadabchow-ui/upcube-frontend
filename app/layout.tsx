@@ -1,28 +1,35 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import { LeftNav } from '@/components/left-nav'
-import { SiteFooter } from '@/components/site-footer'
+import type { Metadata } from "next";
+import "./globals.css";
+
+import LeftNav from "@/components/left-nav";
+import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  title: 'Upcube',
-  description: 'Upcube — navigation hub for products and AI tools.',
-}
+  title: "Upcube",
+  description: "A clean frontend for discovering tools, products, and AI-powered workflows.",
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className="min-h-dvh bg-background text-foreground">
-        <div className="flex min-h-dvh">
-          <LeftNav />
-          <div className="min-w-0 flex-1">
-            <div className="flex min-h-dvh flex-col">
-              {children}
-              <SiteFooter />
-            </div>
+    <html lang="en" className="dark">
+      <body className="min-h-screen bg-black text-white">
+        <LeftNav />
+
+        {/* Main content area with left offset for sidebar */}
+        <div className="min-h-screen md:pl-64">
+          <div className="min-h-screen">
+            {children}
           </div>
+
+          <SiteFooter />
         </div>
       </body>
     </html>
-  )
+  );
 }
+
 
