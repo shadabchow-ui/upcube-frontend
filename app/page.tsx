@@ -2,14 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowUp } from 'lucide-react'
 
-const chips = [
-  'Browse products',
-  'Search tools',
-  'Docs',
-  'Pricing',
-  'Updates',
-  'Support',
-]
+const chips = ['Browse products', 'Search tools', 'Docs', 'Pricing', 'Updates', 'Support']
 
 export default function Home() {
   return (
@@ -33,7 +26,7 @@ export default function Home() {
           </h1>
 
           {/* Prompt box */}
-          <form className="mt-7">
+          <form className="mt-7" onSubmit={(e) => e.preventDefault()}>
             <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
               <input
                 className="h-6 flex-1 bg-transparent text-[13px] text-white/85 outline-none placeholder:text-white/35"
@@ -45,6 +38,7 @@ export default function Home() {
                 variant="ghost"
                 className="h-10 w-10 rounded-full text-white/70 hover:bg-white/8 hover:text-white"
                 aria-label="Submit"
+                type="submit"
               >
                 <ArrowUp className="h-4 w-4" />
               </Button>
@@ -63,4 +57,12 @@ export default function Home() {
                 {c}
               </Button>
             ))}
+          </div>
+        </div>
+      </div>
 
+      {/* Bottom gradient bar */}
+      <div className="h-3 w-full bg-gradient-to-r from-pink-400/20 via-orange-300/15 to-blue-400/20" />
+    </main>
+  )
+}
