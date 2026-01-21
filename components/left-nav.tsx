@@ -17,7 +17,7 @@ export default function LeftNav() {
       <div className="mb-10">
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-white"
+          className="text-[15px] font-medium tracking-tight text-white/90"
         >
           Upcube
         </Link>
@@ -30,11 +30,11 @@ export default function LeftNav() {
             key={item.label}
             href={item.href}
             className="
-              block rounded-lg px-3 py-2 text-sm
-              text-white/70
+              block rounded-md px-3 py-2 text-sm
+              text-white/55
               transition
               hover:bg-white/5
-              hover:text-white
+              hover:text-white/90
             "
           >
             {item.label}
@@ -47,11 +47,11 @@ export default function LeftNav() {
         <Link
           href="/account"
           className="
-            block rounded-lg px-3 py-2 text-sm
-            text-white/60
+            block rounded-md px-3 py-2 text-sm
+            text-white/50
             transition
             hover:bg-white/5
-            hover:text-white
+            hover:text-white/90
           "
         >
           Account
@@ -60,4 +60,3 @@ export default function LeftNav() {
     </aside>
   )
 }
-
