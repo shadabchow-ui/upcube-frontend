@@ -104,17 +104,19 @@ export function LeftNav() {
             const isActive = activeHref === item.href
 
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'group flex items-center gap-3 rounded-lg px-3 py-2 text-[13px]',
-                  'text-white/55 hover:text-white',
-                  'hover:bg-white/5',
-                  isActive && 'bg-white/6 text-white',
-                  collapsed && 'w-10 justify-center px-0'
-                )}
-              >
+<Link
+  key={item.href}
+  href={item.href}
+  title={collapsed ? item.label : undefined}
+  className={cn(
+    'group relative flex items-center gap-3 rounded-lg px-3 py-2 text-[13px]',
+    'text-white/55 hover:text-white',
+    'hover:bg-white/5',
+    isActive && 'bg-white/6 text-white',
+    collapsed && 'w-10 justify-center px-0'
+  )}
+>
+
                 <Icon className={cn('h-4 w-4', isActive ? 'text-white' : 'text-white/60')} />
                 <span className={cn('truncate', collapsed && 'hidden')}>{item.label}</span>
               </Link>
