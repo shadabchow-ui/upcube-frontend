@@ -1,9 +1,8 @@
 import Link from "next/link"
 
-const COLS: Array<{
-  title: string
-  links: Array<{ label: string; href: string }>
-}> = [
+type FooterLink = { label: string; href: string }
+
+const SECTIONS: { title: string; links: FooterLink[] }[] = [
   {
     title: "Our Research",
     links: [
@@ -30,9 +29,9 @@ const COLS: Array<{
     ],
   },
   {
-    title: "Upcube",
+    title: "UpCube",
     links: [
-      { label: "Explore Upcube", href: "#" },
+      { label: "Explore UpCube", href: "#" },
       { label: "Business", href: "#" },
       { label: "Enterprise", href: "#" },
       { label: "Education", href: "#" },
@@ -47,7 +46,7 @@ const COLS: Array<{
       { label: "About Us", href: "#" },
       { label: "Our Principles", href: "#" },
       { label: "Our Vision", href: "#" },
-      { label: "How Upcube Works", href: "#" },
+      { label: "How UpCube Works", href: "#" },
       { label: "UBI", href: "#" },
     ],
   },
@@ -56,6 +55,10 @@ const COLS: Array<{
     links: [
       { label: "Platform Overview", href: "#" },
       { label: "Capabilities", href: "#" },
+      { label: "Pricing", href: "#" },
+      { label: "Docs", href: "#" },
+      { label: "API Status", href: "#" },
+      { label: "Security", href: "#" },
     ],
   },
   {
@@ -72,16 +75,18 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-black">
       <div className="mx-auto w-full max-w-6xl px-10 py-14">
-        <div className="grid gap-10 md:grid-cols-3 lg:grid-cols-4">
-          {COLS.map((col) => (
-            <div key={col.title}>
-              <div className="text-sm font-semibold text-white">{col.title}</div>
-              <ul className="mt-4 space-y-2">
-                {col.links.map((l) => (
+        <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-3 lg:grid-cols-7">
+          {SECTIONS.map((section) => (
+            <div key={section.title} className="space-y-3">
+              <h3 className="text-sm font-semibold tracking-tight text-white">
+                {section.title}
+              </h3>
+              <ul className="space-y-2 text-sm text-white/70">
+                {section.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-sm text-white/70 hover:text-white"
+                      className="transition-colors hover:text-white"
                     >
                       {l.label}
                     </Link>
@@ -92,27 +97,34 @@ export default function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center">
-          <div className="flex items-center gap-4 text-sm text-white/60">
-            <span>© {new Date().getFullYear()} Upcube Technologies Inc.</span>
-            <Link href="#" className="hover:text-white">
+        <div className="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-sm text-white/60">
+            © {new Date().getFullYear()} UpCube Technologies Inc. ·{" "}
+            <Link href="#" className="transition-colors hover:text-white">
               Manage cookies
             </Link>
           </div>
 
+          {/* text-only (no icons) */}
           <div className="flex items-center gap-4 text-sm text-white/60">
-            <Link href="#" className="hover:text-white">
-              X
-            </Link>
-            <Link href="#" className="hover:text-white">
-              Instagram
-            </Link>
-            <Link href="#" className="hover:text-white">
-              LinkedIn
-            </Link>
-            <Link href="#" className="hover:text-white">
+            <Link href="#" className="transition-colors hover:text-white">
               Facebook
             </Link>
+            <Link href="#" className="transition-colors hover:text-white">
+              Instagram
+            </Link>
+            <Link href="#" className="transition-colors hover:text-white">
+              LinkedIn
+            </Link>
+            <Link href="#" className="transition-colors hover:text-white">
+              X
+            </Link>
+          </div>
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white/70">
+            <span>English</span>
+            <span className="text-white/30">·</span>
+            <span>United States</span>
           </div>
         </div>
       </div>
