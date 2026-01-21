@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 const NAV_ITEMS = [
   { label: "Products", href: "/products" },
@@ -14,12 +15,18 @@ export default function LeftNav() {
   return (
     <aside className="fixed left-0 top-0 z-40 h-screen w-[260px] border-r border-white/10 bg-black px-6 py-6">
       {/* Brand */}
-      <div className="mb-10">
-        <Link
-          href="/"
-          className="text-[15px] font-medium tracking-tight text-white/90"
-        >
-          Upcube
+      <div className="mb-10 flex items-center">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/logo-mark.png"
+            alt="Upcube"
+            width={28}
+            height={28}
+            priority
+          />
+          <span className="text-[15px] font-medium tracking-tight text-white/90">
+            Upcube
+          </span>
         </Link>
       </div>
 
@@ -60,3 +67,4 @@ export default function LeftNav() {
     </aside>
   )
 }
+
