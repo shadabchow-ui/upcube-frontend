@@ -7,7 +7,7 @@
 :root {
   color-scheme: dark;
 
-  /* shadcn / Tailwind tokens (HSL) */
+  /* Tailwind / shadcn tokens (HSL) */
   --background: 0 0% 0%;
   --foreground: 0 0% 96%;
 
@@ -59,7 +59,7 @@ body {
   background-color: #000;
   color: hsl(var(--foreground));
 
-  /* subtle OpenAI top glow */
+  /* Subtle OpenAI top glow (restrained) */
   background-image:
     radial-gradient(
       900px 420px at 50% -220px,
@@ -122,7 +122,7 @@ p {
 }
 
 /* ======================================
-   Links & buttons (minimal)
+   Links (quiet, no decoration)
 ====================================== */
 
 a {
@@ -135,7 +135,7 @@ a:hover {
 }
 
 /* ======================================
-   Focus & selection
+   Focus & selection (accessible, subtle)
 ====================================== */
 
 :focus-visible {
@@ -149,7 +149,7 @@ a:hover {
 }
 
 /* ======================================
-   Subtle dividers
+   Soft dividers
 ====================================== */
 
 .hr-soft {
