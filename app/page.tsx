@@ -52,7 +52,7 @@ export default function Home() {
           </form>
 
           {/* Chips */}
-          <div className="mt-5 flex flex-wrap justify-center gap-2">
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
             {chips.map((c) => (
               <Button
                 key={c}
