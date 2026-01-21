@@ -1,4 +1,5 @@
-/* --- OpenAI-ish dark background polish --- */
+@import "tailwindcss";
+
 :root {
   color-scheme: dark;
 }
