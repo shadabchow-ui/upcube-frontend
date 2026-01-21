@@ -1,49 +1,63 @@
-import Link from "next/link";
+import Link from "next/link"
 
-const NAV = [
-  { label: "Research", href: "/research" },
-  { label: "Safety", href: "/safety" },
-  { label: "For Business", href: "/business" },
-  { label: "For Developers", href: "/developers" },
+const NAV_ITEMS = [
+  { label: "Products", href: "/products" },
   { label: "Chat", href: "/chat" },
-  { label: "Images", href: "/images" },
-  { label: "Stories", href: "/stories" },
+  { label: "Image Generator", href: "/image-generator" },
+  { label: "API", href: "/api" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Docs", href: "/docs" },
   { label: "Company", href: "/company" },
-  { label: "News", href: "/news" },
-];
+]
 
 export default function LeftNav() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 border-r border-white/10 bg-black/70 backdrop-blur md:flex">
-      <div className="flex w-full flex-col">
-        {/* Top */}
-        <div className="flex items-center gap-2 px-5 py-4">
-          <Link href="/" className="text-sm font-semibold tracking-tight text-white">
-            upcube
+    <aside className="fixed left-0 top-0 z-40 h-screen w-[260px] border-r border-white/10 bg-black px-6 py-6">
+      {/* Brand */}
+      <div className="mb-10">
+        <Link
+          href="/"
+          className="text-lg font-semibold tracking-tight text-white"
+        >
+          Upcube
+        </Link>
+      </div>
+
+      {/* Navigation */}
+      <nav className="space-y-1">
+        {NAV_ITEMS.map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            className="
+              block rounded-lg px-3 py-2 text-sm
+              text-white/70
+              transition
+              hover:bg-white/5
+              hover:text-white
+            "
+          >
+            {item.label}
           </Link>
-        </div>
+        ))}
+      </nav>
 
-        {/* Nav */}
-        <nav className="flex-1 px-3">
-          <ul className="space-y-1">
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="block rounded-lg px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Bottom */}
-        <div className="px-5 py-4 text-xs text-white/40">
-          <span>© {new Date().getFullYear()} Upcube</span>
-        </div>
+      {/* Bottom section */}
+      <div className="absolute bottom-6 left-6 right-6 border-t border-white/10 pt-4">
+        <Link
+          href="/account"
+          className="
+            block rounded-lg px-3 py-2 text-sm
+            text-white/60
+            transition
+            hover:bg-white/5
+            hover:text-white
+          "
+        >
+          Account
+        </Link>
       </div>
     </aside>
-  );
+  )
 }
+
