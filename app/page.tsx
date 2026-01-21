@@ -1,14 +1,8 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { ArrowUp } from "lucide-react"
 
-const chips = [
-  "Browse products",
-  "Search tools",
-  "Docs",
-  "Pricing",
-  "Updates",
-  "Support",
-]
+const chips = ["Browse products", "Search tools", "Docs", "Pricing", "Updates", "Support"]
 
 export default function Home() {
   return (
@@ -17,46 +11,46 @@ export default function Home() {
       <div className="flex h-14 items-center justify-end px-6">
         <Button
           variant="outline"
-          className="h-9 rounded-full border-white/15 bg-black px-4 text-sm text-white/70 hover:bg-white/5 hover:text-white"
-          asChild
+          className="h-9 rounded-full border-white/15 bg-white/5 text-white hover:bg-white/10"
         >
-          <Link href="/login">Log in</Link>
+          Log in
         </Button>
       </div>
 
-      {/* Center */}
-      <div className="flex flex-1 items-center justify-center px-6">
-        <div className="w-full max-w-2xl">
-          <h1 className="text-center text-[30px] font-medium tracking-tight text-white/90 md:text-[36px]">
+      {/* Center content */}
+      <div className="flex flex-1 items-start justify-center px-6 pt-16">
+        <div className="w-full max-w-2xl text-center">
+          <h1 className="text-3xl font-semibold tracking-tight text-white">
             What can I help with?
           </h1>
 
           {/* Prompt box */}
-          <div className="mt-7">
-            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+          <form action="https://chat.upcube.ai/" method="GET" className="mt-7">
+            <div className="flex items-center gap-3 rounded-2xl bg-white/5 px-4 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.08)] backdrop-blur">
               <input
-                className="h-6 flex-1 bg-transparent text-[13px] text-white/85 outline-none placeholder:text-white/35"
+                name="q"
+                className="w-full bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none"
                 placeholder="Search Upcube…"
-                aria-label="Search Upcube"
               />
               <Button
-                size="sm"
+                type="submit"
+                size="icon"
                 variant="ghost"
-                className="rounded-full px-4 text-xs text-white/60 hover:bg-white/5 hover:text-white"
-                type="button"
+                className="h-9 w-9 rounded-full bg-white/10 text-white hover:bg-white/15"
+                aria-label="Go"
               >
-                Go
+                <ArrowUp className="h-4 w-4" />
               </Button>
             </div>
-          </div>
+          </form>
 
           {/* Chips */}
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             {chips.map((c) => (
               <Button
                 key={c}
                 variant="outline"
-                className="h-9 rounded-full border-white/12 bg-black px-4 text-[13px] text-white/50 hover:bg-white/5 hover:text-white"
+                className="h-9 rounded-full border-white/10 bg-transparent text-xs text-white/70 hover:bg-white/5 hover:text-white"
                 type="button"
               >
                 {c}
@@ -65,7 +59,11 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Bottom gradient bar */}
+      <div className="h-3 w-full bg-gradient-to-r from-pink-400/20 via-orange-300/15 to-blue-400/20" />
     </main>
   )
 }
+
 
