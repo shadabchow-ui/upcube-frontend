@@ -26,7 +26,7 @@ export default function Home() {
           </h1>
 
           {/* Prompt box */}
-          <form className="mt-7" onSubmit={(e) => e.preventDefault()}>
+          <div className="mt-7">
             <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
               <input
                 className="h-6 flex-1 bg-transparent text-[13px] text-white/85 outline-none placeholder:text-white/35"
@@ -37,13 +37,13 @@ export default function Home() {
                 size="icon"
                 variant="ghost"
                 className="h-10 w-10 rounded-full text-white/70 hover:bg-white/8 hover:text-white"
-                aria-label="Submit"
-                type="submit"
+                aria-label="Send"
+                type="button"
               >
                 <ArrowUp className="h-4 w-4" />
               </Button>
             </div>
-          </form>
+          </div>
 
           {/* Chips */}
           <div className="mt-6 flex flex-wrap justify-center gap-2">
