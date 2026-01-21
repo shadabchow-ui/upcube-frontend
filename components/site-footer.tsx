@@ -1,84 +1,185 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-const COLS = [
+const groups = [
   {
-    title: "Upcube",
+    title: 'Our Research',
     links: [
-      { label: "Product", href: "/product" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Docs", href: "/docs" },
-      { label: "Changelog", href: "/changelog" },
+      { label: 'Research', href: '#' },
+      { label: 'Overview', href: '#' },
     ],
   },
   {
-    title: "Platform",
+    title: 'Safety',
     links: [
-      { label: "Chat", href: "/chat" },
-      { label: "Images", href: "/images" },
-      { label: "API status", href: "/status" },
-      { label: "Security", href: "/security" },
+      { label: 'Safety', href: '#' },
+      { label: 'Security & Privacy', href: '#' },
+      { label: 'Trust & Transparency', href: '#' },
     ],
   },
   {
-    title: "Company",
+    title: 'Latest Advancements',
     links: [
-      { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Brand", href: "/brand" },
-      { label: "Contact", href: "/contact" },
+      { label: 'Chat', href: '#' },
+      { label: 'Image', href: '#' },
+      { label: 'Video', href: '#' },
+      { label: 'Search', href: '#' },
     ],
   },
   {
-    title: "Support",
+    title: 'Upcube',
     links: [
-      { label: "Help Center", href: "/help" },
-      { label: "Terms", href: "/terms" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Cookies", href: "/cookies" },
+      { label: 'Explore Upcube', href: '#' },
+      { label: 'Business', href: '#' },
+      { label: 'Enterprise', href: '#' },
+      { label: 'Education', href: '#' },
+      { label: 'Researchers', href: '#' },
+      { label: 'Nonprofits', href: '#' },
+      { label: 'Government', href: '#' },
     ],
   },
-];
+  {
+    title: 'Company',
+    links: [
+      { label: 'About Us', href: '#' },
+      { label: 'Our Principles', href: '#' },
+      { label: 'Our Vision', href: '#' },
+      { label: 'How Upcube Works', href: '#' },
+      { label: 'UBI', href: '#' },
+    ],
+  },
+  {
+    title: 'Platform',
+    links: [
+      { label: 'Platform Overview', href: '#' },
+      { label: 'Capabilities', href: '#' },
+    ],
+  },
+  {
+    title: 'Terms & Policies',
+    links: [
+      { label: 'Terms of Service', href: '#' },
+      { label: 'Privacy Policy', href: '#' },
+      { label: 'Contact Sales', href: '#' },
+    ],
+  },
+]
+
+const socials = [
+  { label: 'Facebook', href: '#' },
+  { label: 'Instagram', href: '#' },
+  { label: 'LinkedIn', href: '#' },
+  { label: 'X', href: '#' },
+]
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-black">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {COLS.map((c) => (
-            <div key={c.title}>
-              <div className="text-xs font-medium tracking-wide text-white/60">
-                {c.title}
+      <div className="mx-auto max-w-6xl px-10 py-10">
+        <div className="grid gap-10 md:grid-cols-3">
+          {/* Column 1 */}
+          <div className="space-y-10">
+            {[groups[0], groups[1], groups[2]].map((g) => (
+              <div key={g.title}>
+                <h3 className="text-[13px] font-semibold tracking-tight text-white/90">
+                  {g.title}
+                </h3>
+                <ul className="mt-3 space-y-2">
+                  {g.links.map((l) => (
+                    <li key={l.label}>
+                      <Link
+                        href={l.href}
+                        className="text-[13px] text-white/60 transition hover:text-white"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="mt-4 space-y-2">
-                {c.links.map((l) => (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      className="text-sm text-white/50 transition hover:text-white/85"
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
+            ))}
+          </div>
+
+          {/* Column 2 */}
+          <div className="space-y-10">
+            {[groups[3], groups[4]].map((g) => (
+              <div key={g.title}>
+                <h3 className="text-[13px] font-semibold tracking-tight text-white/90">
+                  {g.title}
+                </h3>
+                <ul className="mt-3 space-y-2">
+                  {g.links.map((l) => (
+                    <li key={l.label}>
+                      <Link
+                        href={l.href}
+                        className="text-[13px] text-white/60 transition hover:text-white"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            <div className="pt-2">
+              <div className="flex items-center gap-4">
+                {socials.map((s) => (
+                  <Link
+                    key={s.label}
+                    href={s.href}
+                    className="text-[13px] text-white/60 transition hover:text-white"
+                  >
+                    {s.label}
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Column 3 */}
+          <div className="space-y-10">
+            {[groups[5], groups[6]].map((g) => (
+              <div key={g.title}>
+                <h3 className="text-[13px] font-semibold tracking-tight text-white/90">
+                  {g.title}
+                </h3>
+                <ul className="mt-3 space-y-2">
+                  {g.links.map((l) => (
+                    <li key={l.label}>
+                      <Link
+                        href={l.href}
+                        className="text-[13px] text-white/60 transition hover:text-white"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            <div className="pt-6 text-[12px] text-white/45">
+              © {new Date().getFullYear()} UpCube Technologies Inc.
+            </div>
+          </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
-          <div className="text-xs text-white/40">
-            © {new Date().getFullYear()} Upcube ·{" "}
-            <Link href="/cookies" className="transition hover:text-white/80">
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
+          <div className="text-[12px] text-white/45">
+            <Link href="#" className="hover:text-white">
               Manage cookies
             </Link>
           </div>
 
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-black px-3 py-2 text-xs text-white/55">
-            English <span className="text-white/35">United States</span>
-          </div>
+          <button
+            type="button"
+            className="inline-flex h-9 items-center justify-center rounded-full border border-white/15 px-4 text-[12px] text-white/70 transition hover:border-white/25 hover:text-white"
+          >
+            English <span className="ml-2 text-white/45">United States</span>
+          </button>
         </div>
       </div>
     </footer>
-  );
+  )
 }
 
