@@ -159,4 +159,34 @@ footer {
   font-size: 12px;
   letter-spacing: -0.005em;
 }
+/* -----------------------------------------
+   Motion & interaction polish
+------------------------------------------ */
+
+* {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: 140ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Buttons feel soft, not snappy */
+button {
+  transition-duration: 160ms;
+}
+
+/* Links glide in */
+a {
+  transition-duration: 120ms;
+}
+
+/* Hover lift (used sparingly) */
+.hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Active press */
+button:active {
+  transform: translateY(0.5px);
+}
+
 
