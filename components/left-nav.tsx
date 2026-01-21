@@ -1,93 +1,64 @@
 import Link from "next/link"
 import Image from "next/image"
 
-const NAV_ITEMS = [
-  { label: "Research", href: "/research" },
-  { label: "Safety", href: "/safety" },
-  { label: "For Business", href: "/business" },
-  { label: "For Developers", href: "/developers" },
-  { label: "Chat", href: "/chat" },
-  { label: "Images", href: "/images" },
-  { label: "Stories", href: "/stories" },
-  { label: "Company", href: "/company" },
-  { label: "News", href: "/news" },
+const nav = [
+  { label: "Research", href: "#" },
+  { label: "Safety", href: "#" },
+  { label: "For Business", href: "#" },
+  { label: "For Developers", href: "#" },
+  { label: "Chat", href: "#" },
+  { label: "Images", href: "#" },
+  { label: "Stories", href: "#" },
+  { label: "Company", href: "#" },
+  { label: "News", href: "#" },
 ]
 
 export default function LeftNav() {
   return (
-    <>
-      {/* Mobile: keep it simple now (collapse later) */}
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/90 backdrop-blur-md md:hidden">
-        <div className="flex h-14 items-center justify-between px-4">
-          <Link href="/" className="inline-flex items-center">
-            <Image
-              src="/logo-mark.png"
-              alt="Upcube"
-              width={24}
-              height={24}
-              priority
-              className="transition duration-300 hover:drop-shadow-[0_0_14px_rgba(255,255,255,0.22)]"
-            />
-          </Link>
-
-          {/* Placeholder for future mobile drawer (no icons, no JS yet) */}
+    <aside className="fixed inset-y-0 left-0 w-[220px] border-r border-white/10 bg-black">
+      <div className="flex h-full flex-col">
+        <div className="h-16 flex items-center justify-center">
           <Link
-            href="/menu"
-            className="rounded-md px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white/90"
+            href="/"
+            className="inline-flex items-center justify-center rounded-xl p-2 transition"
+            aria-label="Upcube"
           >
-            Menu
-          </Link>
-        </div>
-      </header>
-
-      {/* Desktop sidebar */}
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[220px] border-r border-white/10 bg-black px-6 md:block">
-        {/* Brand (OpenAI-like: tight, simple, centered in its row) */}
-        <div className="flex h-16 items-center">
-          <Link href="/" className="inline-flex items-center">
             <Image
               src="/logo-mark.png"
               alt="Upcube"
-              width={26}
-              height={26}
+              width={28}
+              height={28}
+              className="opacity-95 transition duration-200 hover:opacity-100 hover:drop-shadow-[0_0_14px_rgba(255,255,255,0.20)]"
               priority
-              className="transition duration-300 hover:drop-shadow-[0_0_18px_rgba(255,255,255,0.24)]"
             />
           </Link>
         </div>
 
-        {/* Nav */}
-        <nav className="mt-3 space-y-1">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="
-                block rounded-md px-2 py-2 text-[13px]
-                text-white/55 transition
-                hover:bg-white/5 hover:text-white/90
-              "
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="px-4 py-2">
+          <ul className="space-y-1">
+            {nav.map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  className="block rounded-lg px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white transition"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        {/* Bottom */}
-        <div className="absolute bottom-6 left-6 right-6 border-t border-white/10 pt-4">
+        <div className="mt-auto px-4 pb-4">
+          <div className="h-px bg-white/10 mb-3" />
           <Link
-            href="/login"
-            className="
-              block rounded-md px-2 py-2 text-[13px]
-              text-white/55 transition
-              hover:bg-white/5 hover:text-white/90
-            "
+            href="#"
+            className="block rounded-lg px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white transition"
           >
-            Log in
+            Settings
           </Link>
         </div>
-      </aside>
-    </>
+      </div>
+    </aside>
   )
 }
-
