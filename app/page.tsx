@@ -28,7 +28,7 @@ export default function Home() {
       {/* Center */}
       <div className="flex flex-1 items-center justify-center px-6">
         <div className="w-full max-w-2xl">
-          <h1 className="text-center text-[28px] font-semibold tracking-tight text-white md:text-[34px]">
+          <h1 className="text-center text-[30px] font-semibold tracking-tight text-white md:text-[36px]">
             What can I help with?
           </h1>
 
