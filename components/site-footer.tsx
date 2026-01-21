@@ -41,12 +41,12 @@ const COLS = [
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-black/60">
+    <footer className="border-t border-white/10 bg-black">
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {COLS.map((c) => (
             <div key={c.title}>
-              <div className="text-xs font-semibold tracking-wide text-white/70">
+              <div className="text-xs font-medium tracking-wide text-white/60">
                 {c.title}
               </div>
               <ul className="mt-4 space-y-2">
@@ -54,7 +54,7 @@ export default function SiteFooter() {
                   <li key={l.href}>
                     <Link
                       href={l.href}
-                      className="text-sm text-white/55 hover:text-white"
+                      className="text-sm text-white/50 transition hover:text-white/85"
                     >
                       {l.label}
                     </Link>
@@ -66,14 +66,14 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
-          <div className="text-xs text-white/45">
+          <div className="text-xs text-white/40">
             © {new Date().getFullYear()} Upcube ·{" "}
-            <Link href="/cookies" className="hover:text-white">
+            <Link href="/cookies" className="transition hover:text-white/80">
               Manage cookies
             </Link>
           </div>
 
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/70">
+          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-black px-3 py-2 text-xs text-white/55">
             English <span className="text-white/35">United States</span>
           </div>
         </div>
@@ -81,3 +81,4 @@ export default function SiteFooter() {
     </footer>
   );
 }
+
