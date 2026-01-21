@@ -188,5 +188,23 @@ a {
 button:active {
   transform: translateY(0.5px);
 }
+/* -----------------------------------------
+   Focus rings (quiet, accessible)
+------------------------------------------ */
+
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 0 4px rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 0 0 6px rgba(255, 255, 255, 0.1);
+}
 
 
