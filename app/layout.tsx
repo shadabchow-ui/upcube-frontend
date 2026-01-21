@@ -17,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="bg-black text-white antialiased">
-        {/* Left Navigation */}
+        {/* Left navigation */}
         <LeftNav />
 
-        {/* Main Content */}
+        {/* Main layout */}
         <div className="ml-[260px] flex min-h-screen flex-col">
           <main className="flex-1 px-10 py-10">
             {children}
@@ -33,6 +33,7 @@ export default function RootLayout({
     </html>
   )
 }
+
 
 
 
