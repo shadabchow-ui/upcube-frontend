@@ -6,68 +6,48 @@ const SECTIONS: { title: string; links: FooterLink[] }[] = [
   {
     title: "Our Research",
     links: [
-      { label: "Research", href: "#" },
-      { label: "Overview", href: "#" },
-    ],
-  },
-  {
-    title: "Safety",
-    links: [
-      { label: "Safety", href: "#" },
-      { label: "Security & Privacy", href: "#" },
-      { label: "Trust & Transparency", href: "#" },
-    ],
-  },
-  {
-    title: "Latest",
-    links: [
-      { label: "Advancements", href: "#" },
-      { label: "Chat", href: "#" },
-      { label: "Image", href: "#" },
-      { label: "Video", href: "#" },
-      { label: "Search", href: "#" },
-    ],
-  },
-  {
-    title: "UpCube",
-    links: [
-      { label: "Explore UpCube", href: "#" },
-      { label: "Business", href: "#" },
-      { label: "Enterprise", href: "#" },
-      { label: "Education", href: "#" },
-      { label: "Researchers", href: "#" },
-      { label: "Nonprofits", href: "#" },
-      { label: "Government", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "#" },
-      { label: "Our Principles", href: "#" },
-      { label: "Our Vision", href: "#" },
-      { label: "How UpCube Works", href: "#" },
-      { label: "UBI", href: "#" },
+      { label: "Research", href: "/research" },
+      { label: "Research overview", href: "/research-overview" },
     ],
   },
   {
     title: "Platform",
     links: [
-      { label: "Platform Overview", href: "#" },
-      { label: "Capabilities", href: "#" },
-      { label: "Pricing", href: "#" },
-      { label: "Docs", href: "#" },
-      { label: "API Status", href: "#" },
-      { label: "Security", href: "#" },
+      { label: "Platform overview", href: "/platform-overview" },
+      { label: "Capabilities", href: "/capabilities" },
+      { label: "Docs", href: "/docs" },
     ],
   },
   {
-    title: "Terms & Policies",
+    title: "UpCube",
     links: [
-      { label: "Terms of Service", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Contact Sales", href: "#" },
+      { label: "Explore UpCube", href: "/explore-upcube" },
+      { label: "Business", href: "/business" },
+      { label: "Enterprise", href: "/enterprise" },
+      { label: "Teams", href: "/teams" },
+      { label: "Builders", href: "/builders" },
     ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About us", href: "/about-us" },
+      { label: "How UpCube works", href: "/how-upcube-works" },
+      { label: "UBI", href: "/ubi" },
+      { label: "Journalists", href: "/journalists" },
+    ],
+  },
+  {
+    title: "Security",
+    links: [
+      { label: "Security & privacy", href: "/security-privacy" },
+      { label: "Privacy policy", href: "/privacy-policy" },
+      { label: "Terms of service", href: "/terms-of-service" },
+    ],
+  },
+  {
+    title: "Contact",
+    links: [{ label: "Contact", href: "/contact" }],
   },
 ]
 
