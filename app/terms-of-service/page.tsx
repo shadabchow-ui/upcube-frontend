@@ -1,536 +1,564 @@
-// app/terms-of-service/page.tsx
-import type { Metadata } from "next"
-import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Upcube",
+  title: 'Terms of Service | Upcube',
   description:
-    "Terms of Service for Upcube — rules for using our products, services, and website.",
+    'Upcube Terms of Service covering accounts, acceptable use, content, AI features, API usage, warranties, liability, disputes, and more.',
 }
 
-const toc = [
-  { id: "summary", label: "Plain-English summary" },
-  { id: "who-we-are", label: "Who we are" },
-  { id: "eligibility", label: "Eligibility & accounts" },
-  { id: "acceptable-use", label: "Acceptable use" },
-  { id: "content", label: "Your content & outputs" },
-  { id: "privacy", label: "Privacy & security" },
-  { id: "paid", label: "Paid services (if applicable)" },
-  { id: "availability", label: "Availability & changes" },
-  { id: "disclaimers", label: "Disclaimers" },
-  { id: "limits", label: "Limitation of liability" },
-  { id: "termination", label: "Termination" },
-  { id: "legal", label: "Governing law & disputes" },
-  { id: "contact", label: "Contact" },
+type NavItem = {
+  id: string
+  label: string
+}
+
+const NAV: NavItem[] = [
+  { id: 'introduction', label: 'Introduction' },
+  { id: 'who-we-are', label: '1) Who we are & contact' },
+  { id: 'eligibility', label: '2) Eligibility & accounts' },
+  { id: 'what-you-can-expect', label: '3) What you can expect from us' },
+  { id: 'what-we-expect', label: '4) What we expect from you' },
+  { id: 'your-content', label: '5) Your content & permissions' },
+  { id: 'ai-features', label: '6) AI features & professional-advice disclaimer' },
+  { id: 'software-apis', label: '7) Software, APIs, and updates' },
+  { id: 'third-party', label: '8) Third-party content and links' },
+  { id: 'service-changes', label: '9) Service changes; availability; data export' },
+  { id: 'enforcement', label: '10) Enforcement, removals, suspension, termination' },
+  { id: 'ip-brand', label: '11) Intellectual property; brand use' },
+  { id: 'warranty', label: '12) Warranty disclaimer' },
+  { id: 'liability', label: '13) Limitation of liability' },
+  { id: 'indemnification', label: '14) Indemnification' },
+  { id: 'dmca', label: '15) DMCA & IP complaints' },
+  { id: 'disputes', label: '16) Dispute resolution; governing law; venue' },
+  { id: 'changes', label: '17) Changes to these Terms' },
+  { id: 'misc', label: '18) Miscellaneous' },
+  { id: 'definitions', label: '19) Definitions' },
+  { id: 'contact', label: 'Contact Upcube' },
 ]
 
-function Toc() {
+function OnThisPageCard() {
   return (
-    <Card className="bg-white/5 border-white/10">
-      <CardContent className="p-4">
-        <div className="text-sm font-semibold text-white/90">On this page</div>
-        <div className="mt-3 space-y-2 text-sm">
-          {toc.map((t) => (
+    <aside className="lg:sticky lg:top-24">
+      <div className="rounded-2xl border border-zinc-800/70 bg-zinc-950/50 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur">
+        <div className="text-xs font-medium tracking-wide text-zinc-300">On this page</div>
+        <nav className="mt-3 space-y-1">
+          {NAV.map((item) => (
             <a
-              key={t.id}
-              href={`#${t.id}`}
-              className="block text-white/70 hover:text-white transition"
+              key={item.id}
+              href={`#${item.id}`}
+              className="block rounded-lg px-2 py-1.5 text-[13px] leading-snug text-zinc-200/90 hover:bg-zinc-900/60 hover:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-700"
             >
-              {t.label}
+              {item.label}
             </a>
           ))}
-        </div>
-
-        <div className="mt-4 border-t border-white/10 pt-4 text-xs text-white/55">
-          Looking for privacy details?{" "}
-          <Link href="/privacy-policy" className="text-white/80 hover:text-white underline">
-            Privacy Policy
-          </Link>
-        </div>
-      </CardContent>
-    </Card>
+        </nav>
+      </div>
+    </aside>
   )
 }
 
-function Pill({ children }: { children: React.ReactNode }) {
+function SectionTitle({
+  id,
+  children,
+}: {
+  id: string
+  children: React.ReactNode
+}) {
   return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+    <h2
+      id={id}
+      className="scroll-mt-28 text-[15px] font-semibold tracking-tight text-zinc-100"
+    >
       {children}
-    </span>
+    </h2>
   )
 }
 
 export default function TermsOfServicePage() {
+  const effectiveDate = 'January 24, 2026'
+  const company = 'Upcube Inc.'
+  const hq = 'New York, NY 10005, USA'
+  const contactEmail = 'upcube@gmail.com'
+
   return (
-    <div className="mx-auto max-w-6xl">
-      {/* HERO */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/6 to-white/0 p-8">
-        <div className="pointer-events-none absolute inset-0 opacity-40">
-          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-32 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+    <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-10">
+      {/* Header */}
+      <div className="max-w-3xl">
+        <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800/70 bg-zinc-950/60 px-3 py-1 text-xs text-zinc-300">
+          <span className="text-zinc-100/90">{company}</span>
+          <span className="text-zinc-600">•</span>
+          <span>Effective: {effectiveDate}</span>
+          <span className="text-zinc-600">•</span>
+          <span>Headquarters: {hq}</span>
         </div>
 
-        <div className="relative grid gap-8 md:grid-cols-[1fr_320px]">
-          <div>
-            <div className="flex flex-wrap gap-2">
-              <Pill>Terms & Policies</Pill>
-              <Pill>Last updated: Jan 24, 2026</Pill>
-              <Pill>Version: 1.0</Pill>
-            </div>
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-zinc-50">
+          Upcube — Terms of Service
+        </h1>
 
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight">
-              Terms of Service
-            </h1>
+        <p className="mt-3 text-sm leading-6 text-zinc-300">
+          These Terms form a binding agreement between you and {company} when you access or use our
+          websites, apps, platforms, APIs, and AI tools (chat, search, voice, image generation, and
+          related services) that link to these Terms.
+        </p>
 
-            <p className="mt-3 max-w-2xl text-white/70">
-              These Terms govern your access to and use of Upcube’s websites,
-              products, and services (collectively, the “Services”). If you don’t
-              agree, please don’t use the Services.
+        <div className="mt-5 rounded-2xl border border-zinc-800/70 bg-zinc-950/50 p-4 text-sm text-zinc-300 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur">
+          <div className="font-medium text-zinc-100">Important</div>
+          <p className="mt-1 leading-6">
+            This is a general terms template for your product experience and policies. It is not a
+            substitute for advice from a qualified attorney. If you operate in regulated markets or
+            handle sensitive data, have counsel review this before launch.
+          </p>
+        </div>
+      </div>
+
+      {/* Layout */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-[260px_1fr]">
+        <OnThisPageCard />
+
+        <div className="rounded-2xl border border-zinc-800/70 bg-zinc-950/50 p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur">
+          {/* Introduction */}
+          <SectionTitle id="introduction">Introduction</SectionTitle>
+          <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+            <p>
+              By using the Services, you agree to these Terms. If you do not agree, do not use the
+              Services.
             </p>
-
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              <Button asChild className="bg-white text-black hover:bg-white/90">
-                <a href="#summary">Read the summary</a>
-              </Button>
-
-              <Button asChild variant="outline" className="border-white/15 text-white hover:bg-white/5">
-                <Link href="/contact">Contact</Link>
-              </Button>
-            </div>
-
-            <div className="mt-5 text-xs text-white/50">
-              Note: This page is a product-friendly terms template and should be reviewed by counsel before you treat it as final.
-            </div>
+            <p>
+              Please also review our Privacy Policy (and any service-specific policies or guidelines)
+              which explain how we collect, use, and share information.
+            </p>
+            <p>
+              Additional terms may apply to specific features (for example: APIs, enterprise plans,
+              beta programs, or integrated third-party services). If those terms conflict with these
+              Terms, the feature-specific terms control for that feature.
+            </p>
           </div>
 
-          {/* AT A GLANCE */}
-          <Card className="relative bg-white/5 border-white/10">
-            <CardContent className="p-5">
-              <div className="text-sm font-semibold text-white/90">At a glance</div>
+          <div className="mt-8 space-y-8">
+            {/* 1 */}
+            <section>
+              <SectionTitle id="who-we-are">1) Who we are & contact</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">Service provider:</span> {company},
+                  organized under the laws of the State of New York, USA.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Principal place of business:</span> {hq}
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Contact:</span> {contactEmail}
+                </p>
+              </div>
+            </section>
 
-              <div className="mt-4 space-y-3 text-sm text-white/70">
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-white/60" />
-                  <div>
-                    <span className="text-white/85 font-medium">Be respectful.</span>{" "}
-                    No illegal activity, exploitation, harassment, or attempts to bypass safety.
+            {/* 2 */}
+            <section>
+              <SectionTitle id="eligibility">2) Eligibility & accounts</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">Age.</span> You must be old enough to
+                  form a binding contract in your location or use the Services with the consent and
+                  supervision of a parent or legal guardian. If you are using the Services for an
+                  organization, you represent you have authority to bind that organization.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Accounts.</span> Some features require
+                  an account. You are responsible for your credentials and all activity under your
+                  account. Notify us promptly of suspected compromise.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Administrators.</span> If your account
+                  is managed by an organization (for example: a business or school), your
+                  administrator may access and manage your account according to their policies.
+                </p>
+              </div>
+            </section>
+
+            {/* 3 */}
+            <section>
+              <SectionTitle id="what-you-can-expect">3) What you can expect from us</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">A connected suite of Services.</span>{' '}
+                  Upcube offers tools that may work together so you can move between tasks (planning,
+                  drafting, research, and output creation).
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Continuous improvement.</span> We may
+                  add, change, remove features, or launch/retire Services. We aim to provide
+                  reasonable notice when changes materially affect usage.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Availability.</span> We strive for
+                  reliable access, but we cannot guarantee uninterrupted or error-free operation.
+                </p>
+              </div>
+            </section>
+
+            {/* 4 */}
+            <section>
+              <SectionTitle id="what-we-expect">4) What we expect from you</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">Follow the rules.</span> Your permission
+                  to use the Services continues only while you comply with these Terms, our Privacy
+                  Policy, and any service-specific rules.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Respect others.</span> Comply with
+                  applicable laws (including export controls), respect others’ rights (privacy,
+                  publicity, IP), and do not abuse or harm anyone.
+                </p>
+
+                <div className="mt-3 rounded-xl border border-zinc-800/70 bg-zinc-950/60 p-4">
+                  <div className="text-xs font-medium tracking-wide text-zinc-200">
+                    Don’t abuse the Services
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-white/60" />
-                  <div>
-                    <span className="text-white/85 font-medium">You control what you share.</span>{" "}
-                    Don’t upload secrets you can’t risk exposing.
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-white/60" />
-                  <div>
-                    <span className="text-white/85 font-medium">We work to stay reliable.</span>{" "}
-                    But services can change, and outputs may be imperfect.
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-white/60" />
-                  <div>
-                    <span className="text-white/85 font-medium">Privacy matters.</span>{" "}
-                    See our <Link href="/privacy-policy" className="underline hover:text-white">Privacy Policy</Link>.
-                  </div>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-zinc-300">
+                    <li>Introduce malware or attempt to hack, disrupt, or bypass security.</li>
+                    <li>Engage in spamming, scraping where disallowed, phishing, or fake accounts.</li>
+                    <li>Misrepresent your identity to violate these Terms.</li>
+                    <li>Reverse engineer or extract trade secrets except as allowed by law.</li>
+                    <li>Use automated means to access content contrary to machine-readable instructions.</li>
+                    <li>Use outputs to build, train, or improve competing AI systems where explicitly prohibited.</li>
+                    <li>Impersonate Upcube or create confusion about origin or endorsement.</li>
+                    <li>Encourage or enable others to violate these Terms.</li>
+                  </ul>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+            </section>
 
-      {/* BODY */}
-      <div className="mt-10 grid gap-8 lg:grid-cols-[260px_1fr]">
-        <div className="lg:sticky lg:top-8 h-fit">
-          <Toc />
-        </div>
-
-        <div className="space-y-10">
-          {/* SUMMARY */}
-          <section id="summary" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Plain-English summary</h2>
-            <p className="mt-2 text-white/70">
-              Here’s the intent of these Terms (not a replacement for the full legal text):
-            </p>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              {[
-                {
-                  title: "Use the Services responsibly",
-                  body: "No illegal activity, abuse, exploitation, or attempts to bypass safeguards or access other users’ data.",
-                },
-                {
-                  title: "Be careful with what you submit",
-                  body: "If you paste sensitive information, you assume the risk. Use redaction and least-privilege habits.",
-                },
-                {
-                  title: "Outputs aren’t guaranteed perfect",
-                  body: "AI systems can be wrong. Verify critical facts. Don’t treat outputs as professional advice.",
-                },
-                {
-                  title: "We may update the Services",
-                  body: "We improve, change, or discontinue features. Material Terms changes will be posted with an updated date.",
-                },
-              ].map((c) => (
-                <Card key={c.title} className="bg-white/5 border-white/10">
-                  <CardContent className="p-5">
-                    <div className="text-sm font-semibold text-white/90">{c.title}</div>
-                    <div className="mt-2 text-sm text-white/70">{c.body}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          {/* WHO WE ARE */}
-          <section id="who-we-are" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Who we are</h2>
-            <div className="mt-3 grid gap-4 md:grid-cols-2">
-              <Card className="bg-white/5 border-white/10">
-                <CardContent className="p-5">
-                  <div className="text-sm font-semibold text-white/90">Provider</div>
-                  <div className="mt-2 text-sm text-white/70">
-                    Upcube Inc. (“Upcube”, “we”, “us”, “our”)
-                  </div>
-                  <div className="mt-3 text-sm text-white/70">
-                    HQ: New York, NY 10005, USA
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/5 border-white/10">
-                <CardContent className="p-5">
-                  <div className="text-sm font-semibold text-white/90">Services covered</div>
-                  <div className="mt-2 text-sm text-white/70">
-                    Websites, apps, APIs, models, research pages, and any related tools we operate.
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* ELIGIBILITY */}
-          <section id="eligibility" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Eligibility & accounts</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                You must be legally able to form a binding contract where you live. If you’re using the Services
-                on behalf of an organization, you represent that you have authority to bind that organization.
-              </p>
-              <p>
-                You’re responsible for your account credentials and all activity under your account.
-                Notify us promptly if you suspect unauthorized access.
-              </p>
-            </div>
-
-            <Card className="mt-5 bg-white/5 border-white/10">
-              <CardContent className="p-5">
-                <div className="text-sm font-semibold text-white/90">Security basics we expect</div>
-                <div className="mt-3 grid gap-3 md:grid-cols-3 text-sm text-white/70">
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                    Use strong passwords + MFA where available.
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                    Don’t share credentials or API keys in public repos.
-                  </div>
-                  <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                    Limit access: least-privilege users and scopes.
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* ACCEPTABLE USE */}
-          <section id="acceptable-use" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Acceptable use</h2>
-            <p className="mt-2 text-white/70">
-              You agree not to misuse the Services. Examples of prohibited behavior include:
-            </p>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              {[
-                {
-                  title: "Illegal or harmful activity",
-                  items: [
-                    "Facilitating violence, exploitation, or wrongdoing",
-                    "Attempting to obtain unauthorized access",
-                    "Distributing malware or performing phishing",
-                  ],
-                },
-                {
-                  title: "Abuse of systems or users",
-                  items: [
-                    "Harassment, hate, or targeted abuse",
-                    "Coordinated manipulation or deception",
-                    "Doxxing or sharing private data without consent",
-                  ],
-                },
-                {
-                  title: "Bypassing safety",
-                  items: [
-                    "Prompt-injection attempts against toolchains",
-                    "Jailbreaks intended to violate policy",
-                    "Circumventing rate limits or restrictions",
-                  ],
-                },
-                {
-                  title: "Platform integrity",
-                  items: [
-                    "Scraping at scale without permission",
-                    "Reverse engineering where prohibited by law",
-                    "Interfering with service availability or monitoring",
-                  ],
-                },
-              ].map((b) => (
-                <Card key={b.title} className="bg-white/5 border-white/10">
-                  <CardContent className="p-5">
-                    <div className="text-sm font-semibold text-white/90">{b.title}</div>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-white/70">
-                      {b.items.map((it) => (
-                        <li key={it}>{it}</li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="mt-6 text-sm text-white/60">
-              If you’re unsure whether something is allowed, use the safest interpretation and contact us.
-            </div>
-          </section>
-
-          {/* CONTENT */}
-          <section id="content" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Your content & outputs</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                You may submit text, files, prompts, or other materials (“Input”). You’re responsible for having
-                the rights to submit Input and for ensuring it doesn’t violate law or these Terms.
-              </p>
-              <p>
-                The Services may generate responses, media, or other results (“Output”). Output may be inaccurate
-                or incomplete. You are responsible for evaluating Output before using it.
-              </p>
-            </div>
-
-            <Card className="mt-5 bg-white/5 border-white/10">
-              <CardContent className="p-5">
-                <div className="text-sm font-semibold text-white/90">Safety + ownership note</div>
-                <div className="mt-2 text-sm text-white/70">
-                  Upcube does not claim ownership of your Input. Rights in Output depend on the specific product and
-                  applicable law. For brand, compliance, and enterprise requirements, request our Trust Portal artifacts.
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* PRIVACY */}
-          <section id="privacy" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Privacy & security</h2>
-            <p className="mt-2 text-white/70">
-              Our handling of personal information is described in our{" "}
-              <Link href="/privacy-policy" className="underline hover:text-white">
-                Privacy Policy
-              </Link>
-              . We design systems with data-minimization and security controls, but no system is perfectly secure.
-            </p>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {[
-                { title: "Data minimization", body: "Collect only what we need to run and improve the Services." },
-                { title: "Scoped access", body: "Prefer least-privilege roles, audit logs, and access reviews." },
-                { title: "Secure defaults", body: "Encryption in transit, hardened endpoints, and monitoring." },
-              ].map((c) => (
-                <Card key={c.title} className="bg-white/5 border-white/10">
-                  <CardContent className="p-5">
-                    <div className="text-sm font-semibold text-white/90">{c.title}</div>
-                    <div className="mt-2 text-sm text-white/70">{c.body}</div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          {/* PAID */}
-          <section id="paid" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Paid services (if applicable)</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                Some Services may be paid. If you purchase a subscription or credits, pricing, billing cycle, and
-                included limits will be shown at checkout or in your plan details.
-              </p>
-              <p>
-                Unless required by law, fees are non-refundable once a billing period begins. We may suspend or
-                downgrade service for unpaid balances.
-              </p>
-            </div>
-          </section>
-
-          {/* AVAILABILITY */}
-          <section id="availability" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Availability & changes</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                We aim for reliable operation, but downtime can happen (maintenance, incidents, upstream outages).
-                We may change, add, or remove features over time.
-              </p>
-              <p>
-                If we make material changes to these Terms, we will post the updated version with a new “Last updated”
-                date. Continued use after changes means you accept the updated Terms.
-              </p>
-            </div>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <Card className="bg-white/5 border-white/10">
-                <CardContent className="p-5">
-                  <div className="text-sm font-semibold text-white/90">Enterprise changes</div>
-                  <div className="mt-2 text-sm text-white/70">
-                    Enterprise customers may have a separate agreement that controls where it conflicts with these Terms.
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/5 border-white/10">
-                <CardContent className="p-5">
-                  <div className="text-sm font-semibold text-white/90">API rate limits</div>
-                  <div className="mt-2 text-sm text-white/70">
-                    We may enforce or update limits to protect platform stability and fair use.
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
-          {/* DISCLAIMERS */}
-          <section id="disclaimers" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Disclaimers</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                The Services are provided “as is” and “as available.” To the extent permitted by law, we disclaim
-                warranties of merchantability, fitness for a particular purpose, and non-infringement.
-              </p>
-              <p>
-                Do not rely on Output as professional advice (medical, legal, financial, or safety-critical). Verify
-                independently and consult qualified professionals when needed.
-              </p>
-            </div>
-          </section>
-
-          {/* LIMITS */}
-          <section id="limits" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Limitation of liability</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                To the maximum extent permitted by law, Upcube will not be liable for indirect, incidental, special,
-                consequential, or punitive damages, or loss of profits, revenue, data, or goodwill.
-              </p>
-              <p>
-                Our total liability for any claim relating to the Services will not exceed the amount you paid to Upcube
-                for the Services in the 12 months before the event giving rise to the claim (or $100 if you paid nothing).
-              </p>
-            </div>
-          </section>
-
-          {/* TERMINATION */}
-          <section id="termination" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Termination</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                You may stop using the Services at any time. We may suspend or terminate access if we reasonably believe
-                you violated these Terms, posed a security risk, or used the Services unlawfully.
-              </p>
-              <p>
-                Upon termination, your right to use the Services ends. Certain sections of these Terms survive, including
-                disclaimers, limitation of liability, and dispute provisions.
-              </p>
-            </div>
-
-            <Card className="mt-5 bg-white/5 border-white/10">
-              <CardContent className="p-5">
-                <div className="text-sm font-semibold text-white/90">Appeals</div>
-                <div className="mt-2 text-sm text-white/70">
-                  If you believe enforcement was mistaken, contact us with context, timestamps, and any relevant IDs so we
-                  can review.
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* LEGAL */}
-          <section id="legal" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Governing law & disputes</h2>
-            <div className="mt-3 space-y-3 text-white/70">
-              <p>
-                These Terms are governed by the laws of the State of New York, excluding conflict-of-laws rules.
-              </p>
-              <p>
-                Any dispute will be brought in the state or federal courts located in New York County, New York, and you
-                consent to their jurisdiction, except where prohibited by law.
-              </p>
-            </div>
-          </section>
-
-          {/* CONTACT */}
-          <section id="contact" className="scroll-mt-24">
-            <h2 className="text-xl font-semibold">Contact</h2>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <Card className="bg-white/5 border-white/10">
-                <CardContent className="p-5">
-                  <div className="text-sm font-semibold text-white/90">General</div>
-                  <div className="mt-2 text-sm text-white/70">
-                    Email:{" "}
-                    <a className="underline hover:text-white" href="mailto:upcubeco@gmail.com">
-                      upcubeco@gmail.com
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/5 border-white/10">
-                <CardContent className="p-5">
-                  <div className="text-sm font-semibold text-white/90">Security reports</div>
-                  <div className="mt-2 text-sm text-white/70">
-                    Email:{" "}
-                    <a className="underline hover:text-white" href="mailto:upcubeco@gmail.com?subject=Security%20Report">
-                      upcubeco@gmail.com
-                    </a>{" "}
-                    (subject: <span className="text-white/80">Security Report</span>)
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="mt-8 flex items-center justify-between">
-              <a href="#top" className="text-sm text-white/70 hover:text-white underline">
-                Back to top
-              </a>
-
-              <div className="text-xs text-white/50">
-                Related:{" "}
-                <Link href="/privacy-policy" className="underline hover:text-white">
-                  Privacy Policy
-                </Link>{" "}
-                ·{" "}
-                <Link href="/trust-transparency" className="underline hover:text-white">
-                  Trust & Transparency
-                </Link>
+            {/* 5 */}
+            <section>
+              <SectionTitle id="your-content">5) Your content & permissions</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">Your content remains yours.</span> You
+                  retain any rights you have in content you upload, submit, store, send, receive, or
+                  share through the Services (“User Content”).
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">License you grant to Upcube.</span> You
+                  grant Upcube a worldwide, non-exclusive, royalty-free license to host, store,
+                  reproduce, process, adapt, publish (only as directed by you), and display your User
+                  Content solely to operate, maintain, and improve the Services, including:
+                </p>
+                <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-300">
+                  <li>Operate the Services (including routing requests and backups).</li>
+                  <li>Maintain safety, quality, analytics, troubleshooting, and reliability.</li>
+                  <li>Enable features you turn on (sharing, collaboration, export).</li>
+                </ul>
+                <p>
+                  <span className="font-medium text-zinc-100">Your responsibility.</span> You are
+                  responsible for your User Content and ensuring you have rights to upload/share it
+                  and that it is lawful.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Feedback.</span> If you send ideas or
+                  suggestions, you grant Upcube permission to use them without restriction or
+                  compensation.
+                </p>
               </div>
-            </div>
-          </section>
+            </section>
+
+            {/* 6 */}
+            <section>
+              <SectionTitle id="ai-features">
+                6) AI features & professional-advice disclaimer
+              </SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  AI outputs may be inaccurate, incomplete, offensive, or otherwise unexpected. Do
+                  not rely on outputs as a sole source of truth.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">No professional advice.</span> The
+                  Services are not medical, legal, financial, or other professional advice. You are
+                  responsible for verifying outputs before using them in real-world decisions.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Human in control.</span> You are
+                  responsible for how you use outputs. Where required by law or policy, you must
+                  disclose that AI was used.
+                </p>
+              </div>
+            </section>
+
+            {/* 7 */}
+            <section>
+              <SectionTitle id="software-apis">7) Software, APIs, and updates</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  Some Services include downloadable software or provide access via APIs/SDKs. Subject
+                  to these Terms, Upcube grants you a personal, non-transferable, non-sublicensable,
+                  revocable, royalty-free license to use them solely as part of the Services.
+                </p>
+                <p>
+                  We may automatically update software to improve performance, security, or
+                  compatibility. Some settings may let you control automatic updates.
+                </p>
+                <p>
+                  Open-source components are licensed under their own terms and may override parts of
+                  this section.
+                </p>
+              </div>
+            </section>
+
+            {/* 8 */}
+            <section>
+              <SectionTitle id="third-party">8) Third-party content and links</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  The Services may display or enable access to third-party content, products, or
+                  services. We do not control third parties and are not responsible for them. Your
+                  use may be governed by third-party terms and privacy policies.
+                </p>
+              </div>
+            </section>
+
+            {/* 9 */}
+            <section>
+              <SectionTitle id="service-changes">
+                9) Service changes; availability; data export
+              </SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  We may change, discontinue, or suspend features or Services. If a change materially
+                  and adversely affects your use, we will provide reasonable notice when feasible.
+                </p>
+                <p>
+                  Where feasible, we will offer reasonable ways to export your data stored with us.
+                  Export options may vary by Service and plan.
+                </p>
+              </div>
+            </section>
+
+            {/* 10 */}
+            <section>
+              <SectionTitle id="enforcement">
+                10) Enforcement, removals, suspension, termination
+              </SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  Before taking action, we will, when reasonably possible, provide notice, describe
+                  the reason, and offer an opportunity to resolve the issue unless doing so would
+                  cause harm or violate law.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Content removals.</span> We may remove
+                  or block content that violates these Terms, service-specific policies, or law
+                  (including CSAM, trafficking, terrorist content, harassment, or infringing
+                  material).
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Account action.</span> We may suspend
+                  or terminate access (or delete accounts) for material or repeated violations,
+                  illegal requirements, or harmful conduct.
+                </p>
+                <p>
+                  If you believe we took action in error, contact {contactEmail}.
+                </p>
+              </div>
+            </section>
+
+            {/* 11 */}
+            <section>
+              <SectionTitle id="ip-brand">11) Intellectual property; brand use</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  Upcube and its licensors own the Services and related IP. These Terms do not grant
+                  you rights to use our trademarks, logos, or branding except as permitted by our
+                  brand guidelines or with prior written permission.
+                </p>
+                <p>
+                  Do not remove or alter legal notices displayed in or with the Services.
+                </p>
+              </div>
+            </section>
+
+            {/* 12 */}
+            <section>
+              <SectionTitle id="warranty">12) Warranty disclaimer</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p className="uppercase text-zinc-200">
+                  TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SERVICES ARE PROVIDED “AS IS” AND “AS
+                  AVAILABLE,” WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY,
+                  INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+                  TITLE, AND NON-INFRINGEMENT.
+                </p>
+                <p>
+                  We do not warrant that the Services will be accurate, reliable, available, secure,
+                  error-free, or uninterrupted, or that defects will be corrected.
+                </p>
+              </div>
+            </section>
+
+            {/* 13 */}
+            <section>
+              <SectionTitle id="liability">13) Limitation of liability</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p className="uppercase text-zinc-200">
+                  TO THE MAXIMUM EXTENT PERMITTED BY LAW, UPCUBE WILL NOT BE LIABLE FOR ANY INDIRECT,
+                  INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR LOST
+                  PROFITS, REVENUES, BUSINESS, GOODWILL, DATA, OR SAVINGS, EVEN IF ADVISED OF THE
+                  POSSIBILITY OF SUCH DAMAGES.
+                </p>
+                <p className="uppercase text-zinc-200">
+                  TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR TOTAL LIABILITY FOR CLAIMS ARISING OUT
+                  OF OR RELATING TO THE SERVICES OR THESE TERMS WILL NOT EXCEED THE GREATER OF (A)
+                  US $100 OR (B) THE AMOUNTS YOU PAID TO UPCUBE FOR THE SERVICES THAT GAVE RISE TO THE
+                  CLAIM DURING THE 12 MONTHS BEFORE THE EVENT.
+                </p>
+                <p>
+                  Some jurisdictions do not allow certain limitations; in those cases, limitations
+                  apply only to the extent permitted by law.
+                </p>
+              </div>
+            </section>
+
+            {/* 14 */}
+            <section>
+              <SectionTitle id="indemnification">14) Indemnification</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  If you use the Services on behalf of a business or organization, to the extent
+                  permitted by law, you will indemnify and hold harmless Upcube and its officers,
+                  directors, employees, agents, and contractors from any claims, liabilities, damages,
+                  losses, and expenses (including reasonable attorneys’ fees) arising out of:
+                </p>
+                <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-300">
+                  <li>Your use of the Services,</li>
+                  <li>Your User Content,</li>
+                  <li>Your violation of these Terms,</li>
+                  <li>Your violation of any rights of another person or entity.</li>
+                </ul>
+              </div>
+            </section>
+
+            {/* 15 */}
+            <section>
+              <SectionTitle id="dmca">15) DMCA & IP complaints</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  We respect intellectual property rights. If you believe content on the Services
+                  infringes your rights, send a notice to {contactEmail} with sufficient information
+                  to identify the material and your claim. We may remove or disable access to the
+                  material and, where appropriate, terminate repeat infringers.
+                </p>
+              </div>
+            </section>
+
+            {/* 16 */}
+            <section>
+              <SectionTitle id="disputes">16) Dispute resolution; governing law; venue</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">Contact us first.</span> Most issues can
+                  be resolved informally. Please email {contactEmail} before starting a formal dispute.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Governing law.</span> These Terms and
+                  disputes arising out of or relating to them or the Services are governed by the laws
+                  of the State of New York, without regard to conflict-of-law rules.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Venue.</span> You and Upcube agree to the
+                  exclusive jurisdiction and venue of the state and federal courts located in New York
+                  County, New York, and consent to personal jurisdiction in those courts.
+                </p>
+                <p>
+                  Nothing here limits either party’s ability to seek equitable relief to prevent
+                  unauthorized use or misuse of the Services or IP infringement.
+                </p>
+              </div>
+            </section>
+
+            {/* 17 */}
+            <section>
+              <SectionTitle id="changes">17) Changes to these Terms</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  We may update these Terms from time to time. If we make material changes, we will
+                  provide reasonable notice (for example, by email or in-product) and indicate the
+                  effective date. Updated Terms will govern your use after they become effective. If
+                  you do not agree, you must stop using the Services before the effective date.
+                </p>
+              </div>
+            </section>
+
+            {/* 18 */}
+            <section>
+              <SectionTitle id="misc">18) Miscellaneous</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-300">
+                  <li>
+                    <span className="font-medium text-zinc-100">Entire agreement.</span> These Terms,
+                    service-specific terms, and the Privacy Policy form the entire agreement.
+                  </li>
+                  <li>
+                    <span className="font-medium text-zinc-100">Severability.</span> If any provision
+                    is unenforceable, the rest remains in effect.
+                  </li>
+                  <li>
+                    <span className="font-medium text-zinc-100">No waiver.</span> Failure to enforce a
+                    provision is not a waiver.
+                  </li>
+                  <li>
+                    <span className="font-medium text-zinc-100">Assignment.</span> You may not assign
+                    these Terms without consent. Upcube may assign them as part of a merger,
+                    acquisition, sale of assets, or by operation of law.
+                  </li>
+                  <li>
+                    <span className="font-medium text-zinc-100">Force majeure.</span> We are not liable
+                    for delays or failures caused by events beyond reasonable control.
+                  </li>
+                  <li>
+                    <span className="font-medium text-zinc-100">Export.</span> You must comply with all
+                    applicable export control and sanctions laws.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* 19 */}
+            <section>
+              <SectionTitle id="definitions">19) Definitions</SectionTitle>
+              <div className="mt-2 space-y-3 text-sm leading-6 text-zinc-300">
+                <p>
+                  <span className="font-medium text-zinc-100">“Services”</span> means Upcube’s websites,
+                  apps, platforms, APIs, and AI features (chat, search, voice, image generation) that
+                  link to these Terms.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">“User Content”</span> means any content
+                  you upload, submit, store, send, receive, or share through the Services.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">“Including”</span> means including
+                  without limitation.
+                </p>
+                <p>
+                  <span className="font-medium text-zinc-100">Optional add-ons (if applicable)</span>{' '}
+                  may include paid subscriptions, data portability/export tools, and brand permission
+                  guidelines.
+                </p>
+              </div>
+            </section>
+
+            {/* Contact */}
+            <section>
+              <SectionTitle id="contact">Contact Upcube</SectionTitle>
+              <div className="mt-2 space-y-2 text-sm leading-6 text-zinc-300">
+                <p className="font-medium text-zinc-100">{company}</p>
+                <p>{hq}</p>
+                <p>{contactEmail}</p>
+                <p className="pt-2 text-xs text-zinc-500">Build the future. Stay human.</p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-
-      {/* anchor for Back to top */}
-      <div id="top" />
-    </div>
+    </main>
   )
 }
