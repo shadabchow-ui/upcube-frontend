@@ -1,16 +1,12 @@
-import React from "react"
+import * as React from "react"
 
 type BadgeVariant = "default" | "secondary" | "outline" | "destructive"
 
 export function Badge({
-  children,
   className = "",
   variant = "default",
-}: {
-  children: React.ReactNode
-  className?: string
-  variant?: BadgeVariant
-}) {
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement> & { variant?: BadgeVariant }) {
   const base =
     "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
 
@@ -21,8 +17,7 @@ export function Badge({
     destructive: "bg-red-500/15 text-red-200 border border-red-500/30",
   }
 
-  return (
-    <span className={`${base} ${styles[variant]} ${className}`}>{children}</span>
-  )
+  return <span className={`${base} ${styles[variant]} ${className}`} {...props} />
 }
+
 
