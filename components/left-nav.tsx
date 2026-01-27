@@ -1,55 +1,66 @@
-'use client'
-
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from "next/link"
 
 const nav = [
-  // internal pages (keep if you want)
-  { label: 'Research', href: '/research-overview' },
-  { label: 'Company', href: '/about-us' },
-  { label: 'News', href: '/news' },
+  { label: "Research", href: "/research" },
+  { label: "Company", href: "/company" },
+  { label: "News", href: "/news" },
 
-  // subdomains (apps)
-  { label: 'Chat', href: 'https://chat.upcube.ai' },
-  { label: 'Images', href: 'https://image.upcube.ai' },
-  { label: 'Headshots', href: 'https://headshots.upcube.ai' },
-  { label: 'Voice', href: 'https://voice.upcube.ai' },
-  { label: 'Video', href: 'https://video.upcube.ai' },
-  { label: 'AI Detector', href: 'https://detect.upcube.ai' },
-  { label: 'Grammar', href: 'https://script.upcube.ai' },
+  { label: "Chat", href: "https://chat.upcube.ai" },
+  { label: "Images", href: "https://image.upcube.ai" },
+  { label: "Headshots", href: "https://headshots.upcube.ai" },
+  { label: "Voice", href: "https://voice.upcube.ai" },
+  { label: "Video", href: "https://video.upcube.ai" },
+  { label: "AI Detector", href: "https://detect.upcube.ai" },
+  { label: "Grammar", href: "https://script.upcube.ai" },
 
-  // optional internal
-  { label: 'For Business', href: '/business' },
+  { label: "For Business", href: "/business" },
 ]
 
+function isExternal(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://")
+}
+
 export default function LeftNav() {
-  const pathname = usePathname()
-
   return (
-    <nav className="flex flex-col gap-1 text-sm">
-      {nav.map((item) => {
-        const isExternal = item.href.startsWith('http')
-        const active = !isExternal && pathname === item.href
+    <aside className="fixed left-0 top-0 h-screen w-[220px] border-r border-white/10 bg-black">
+      {/* Brand / header */}
+      <div className="px-4 py-4">
+        <Link href="/" className="block text-sm font-semibold tracking-wide text-white">
+          Upcube
+        </Link>
+        <div className="mt-2 h-px w-full bg-white/10" />
+      </div>
 
-        return (
-          <Link
-            key={item.label}
-            href={item.href}
-            // keep same tab for subdomains (feels like one platform)
-            target={undefined}
-            rel={isExternal ? 'noreferrer noopener' : undefined}
-            className={[
-              'rounded-md px-3 py-2 transition-colors',
-              active
-                ? 'bg-white/10 text-white'
-                : 'text-zinc-400 hover:text-white hover:bg-white/5',
-            ].join(' ')}
-          >
-            {item.label}
-          </Link>
-        )
-      })}
-    </nav>
+      <nav className="px-2 pb-6">
+        <ul className="space-y-1">
+          {nav.map((item) => {
+            const external = isExternal(item.href)
+
+            const classes =
+              "block rounded-md px-3 py-2 text-sm text-white/80 hover:bg-white/[0.04] hover:text-white"
+
+            return (
+              <li key={item.label}>
+                {external ? (
+                  <a
+                    href={item.href}
+                    className={classes}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link href={item.href} className={classes}>
+                    {item.label}
+                  </Link>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+    </aside>
   )
 }
 
