@@ -1,33 +1,75 @@
-import * as React from "react"
+import * as React from "react";
 
-type DivProps = React.HTMLAttributes<HTMLDivElement>
-type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>
-type ParaProps = React.HTMLAttributes<HTMLParagraphElement>
+import { cn } from "@/lib/cn";
 
-export function Card({ className = "", ...props }: DivProps) {
-  return (
+const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
     <div
-      className={`rounded-2xl border border-white/10 bg-white/5 ${className}`}
+      ref={ref}
+      data-slot="card"
+      className={cn(
+        "rounded-xl border border-white/10 bg-white/[0.02] text-white shadow-sm",
+        className
+      )}
       {...props}
     />
   )
-}
+);
+Card.displayName = "Card";
 
-export function CardHeader({ className = "", ...props }: DivProps) {
-  return <div className={`p-5 pb-0 ${className}`} {...props} />
-}
+const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} data-slot="card-header" className={cn("p-6", className)} {...props} />
+  )
+);
+CardHeader.displayName = "CardHeader";
 
-export function CardContent({ className = "", ...props }: DivProps) {
-  return <div className={`p-5 ${className}`} {...props} />
-}
+const CardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h3
+      ref={ref}
+      data-slot="card-title"
+      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      {...props}
+    />
+  )
+);
+CardTitle.displayName = "CardTitle";
 
-export function CardFooter({ className = "", ...props }: DivProps) {
-  return <div className={`p-5 pt-0 ${className}`} {...props} />
-}
+const CardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    data-slot="card-description"
+    className={cn("mt-1 text-sm text-zinc-300", className)}
+    {...props}
+  />
+));
+CardDescription.displayName = "CardDescription";
 
-export function CardTitle({ className = "", ...props }: HeadingProps) {
-  return <h3 className={`text-lg font-semibold leading-none ${className}`} {...props} />
-}
+const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} data-slot="card-content" className={cn("px-6 pb-6", className)} {...props} />
+  )
+);
+CardContent.displayName = "CardContent";
+
+const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      data-slot="card-footer"
+      className={cn("flex items-center px-6 pb-6", className)}
+      {...props}
+    />
+  )
+);
+CardFooter.displayName = "CardFooter";
+
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
+
 
 export function CardDescription({ className = "", ...props }: ParaProps) {
   return <p className={`text-sm text-white/70 ${className}`} {...props} />
