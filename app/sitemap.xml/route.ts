@@ -1,15 +1,12 @@
-export const runtime = "edge";
+export const dynamic = "force-static";
 
 function xmlEscape(s: string) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 export async function GET() {
-  // Put every sitemap you want Google to discover here.
-  // Each sitemap URL must be hosted on its own (sub)domain.
   const sitemaps = [
     "https://upcube.ai/sitemap-main.xml",
-
     "https://chat.upcube.ai/sitemap.xml",
     "https://image.upcube.ai/sitemap.xml",
     "https://headshots.upcube.ai/sitemap.xml",
@@ -19,17 +16,10 @@ export async function GET() {
     "https://script.upcube.ai/sitemap.xml",
   ];
 
-  const now = new Date().toISOString();
-
   const body =
     `<?xml version="1.0" encoding="UTF-8"?>` +
     `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` +
-    sitemaps
-      .map(
-        (loc) =>
-          `<sitemap><loc>${xmlEscape(loc)}</loc><lastmod>${now}</lastmod></sitemap>`
-      )
-      .join("") +
+    sitemaps.map((loc) => `<sitemap><loc>${xmlEscape(loc)}</loc></sitemap>`).join("") +
     `</sitemapindex>`;
 
   return new Response(body, {
@@ -39,3 +29,4 @@ export async function GET() {
     },
   });
 }
+
