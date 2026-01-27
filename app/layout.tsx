@@ -17,20 +17,24 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="bg-black text-white antialiased">
-        {/* Left Navigation */}
-        <LeftNav />
+        {/* Desktop Left Navigation */}
+        <div className="hidden md:block">
+          <LeftNav />
+        </div>
 
         {/* Main Content */}
-        <div className="ml-[220px] flex min-h-screen flex-col">
-          <main className="flex-1 px-10 py-10">{children}</main>
+        <div className="flex min-h-screen flex-col md:ml-[220px]">
+          <main className="flex-1 px-4 py-6 md:px-10 md:py-10">
+            {children}
+          </main>
 
-          {/* Footer */}
           <SiteFooter />
         </div>
       </body>
     </html>
   )
 }
+
 
 
 
