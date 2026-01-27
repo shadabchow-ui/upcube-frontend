@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { cn } from "@/lib/cn";
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -70,7 +69,3 @@ CardFooter.displayName = "CardFooter";
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
 
-
-export function CardDescription({ className = "", ...props }: ParaProps) {
-  return <p className={`text-sm text-white/70 ${className}`} {...props} />
-}
