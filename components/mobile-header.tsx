@@ -1,40 +1,82 @@
-import type { Metadata } from "next"
-import "./globals.css"
+"use client"
 
-import LeftNav from "@/components/left-nav"
-import SiteFooter from "@/components/site-footer"
-import MobileHeader from "@/components/mobile-header"
+import { useState } from "react"
+import Link from "next/link"
 
-export const metadata: Metadata = {
-  title: "Upcube",
-  description: "Upcube — AI products, APIs, and tools",
+export default function MobileHeader() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      {/* Top Header */}
+      <header className="fixed top-0 z-50 w-full bg-black/90 backdrop-blur md:hidden">
+        <div className="flex h-14 items-center justify-between px-4">
+          <Link href="/" className="text-lg font-semibold">
+            Upcube
+          </Link>
+
+          <button
+            onClick={() => setOpen(true)}
+            className="rounded p-2 text-xl"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+      </header>
+
+      {/* Overlay */}
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-black/60 md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Drawer */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-black border-r border-white/10 p-4 transform transition-transform md:hidden ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="mb-6 flex items-center justify-between">
+          <span className="text-lg font-semibold">Upcube</span>
+          <button onClick={() => setOpen(false)} className="text-xl">
+            ✕
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-3">
+          <NavLink href="https://chat.upcube.ai">Chat</NavLink>
+          <NavLink href="https://image.upcube.ai">Image</NavLink>
+          <NavLink href="https://video.upcube.ai">Video</NavLink>
+          <NavLink href="https://voice.upcube.ai">Voice</NavLink>
+          <NavLink href="https://headshots.upcube.ai">Headshots</NavLink>
+          <NavLink href="https://detect.upcube.ai">AI Detector</NavLink>
+          <NavLink href="https://script.upcube.ai">Script</NavLink>
+        </nav>
+      </aside>
+    </>
+  )
 }
 
-export default function RootLayout({
+function NavLink({
+  href,
   children,
 }: {
+  href: string
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-black text-white antialiased">
-        {/* Mobile Header */}
-        <MobileHeader />
-
-        {/* Desktop Left Navigation */}
-        <div className="hidden md:block">
-          <LeftNav />
-        </div>
-
-        {/* Main Content */}
-        <div className="flex min-h-screen flex-col md:ml-[220px]">
-          <main className="flex-1 px-4 pt-20 pb-6 md:px-10 md:py-10">
-            {children}
-          </main>
-
-          <SiteFooter />
-        </div>
-      </body>
-    </html>
+    <a
+      href={href}
+      className="rounded px-2 py-2 text-white/90 hover:bg-white/10"
+      onClick={() => {
+        // allow navigation; drawer closes via page reload
+      }}
+    >
+      {children}
+    </a>
   )
 }
+
