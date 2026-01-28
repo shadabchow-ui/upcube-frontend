@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function MobileHeader() {
   const [open, setOpen] = useState(false)
@@ -11,8 +12,15 @@ export default function MobileHeader() {
       {/* Top Header */}
       <header className="fixed top-0 z-50 w-full bg-black/90 backdrop-blur md:hidden">
         <div className="flex h-14 items-center justify-between px-4">
-          <Link href="/" className="text-lg font-semibold">
-            Upcube
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo-mark.png"
+              alt="Upcube"
+              width={26}
+              height={26}
+              priority
+            />
+            <span className="sr-only">Upcube</span>
           </Link>
 
           <button
@@ -40,7 +48,16 @@ export default function MobileHeader() {
         }`}
       >
         <div className="mb-6 flex items-center justify-between">
-          <span className="text-lg font-semibold">Upcube</span>
+          <div className="flex items-center gap-2">
+            <Image
+              src="/logo-mark.png"
+              alt="Upcube"
+              width={28}
+              height={28}
+              priority
+            />
+            <span className="sr-only">Upcube</span>
+          </div>
           <button onClick={() => setOpen(false)} className="text-xl">
             ✕
           </button>
@@ -79,4 +96,5 @@ function NavLink({
     </a>
   )
 }
+
 
